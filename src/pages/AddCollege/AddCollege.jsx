@@ -24,7 +24,7 @@ const AddCollege = () => {
                 if (imgResponse.success) {
                     const photoURL = imgResponse.data.display_url;
                     const saveClass = { name: data.name, image: photoURL,admissionDate:data.admissionDate, events:data.events, eventDetails:data.eventDetails, eventHistory:data.eventHistory, researchHistory:data.researchHistory, researchWork:data.researchWork, sportsName:data.sportsName, sportsDetails:data.sportsDetails, adminEmail:user.email}
-                    fetch('http://localhost:5000/addcollege', {
+                    fetch('http://localhost:5000/colleges', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

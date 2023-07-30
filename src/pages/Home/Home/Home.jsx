@@ -3,6 +3,7 @@ import CollegeCard from "../CollegeCard/CollegeCard";
 import CollegeImageGallery from "../CollegeImageGallery/CollegeImageGallery";
 import Researce from "../Researce/Researce";
 import Review from "../Review/Review";
+import SingleCollege from "./SingleCollege";
 
 
 const Home = () => {
@@ -16,12 +17,12 @@ const Home = () => {
     // }, [])
 
     const handleSearch = () => {
-        // fetch(`https://my-avenger-server.vercel.app/toy-name/${searchText}`)
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //         console.log(data);
-        //         setToys(data);
-        //     });
+        fetch(`http://localhost:5000/college-name/${searchText}`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                setCollege(data);
+            });
     };
     return (
         <div>
@@ -32,6 +33,11 @@ const Home = () => {
                     className="border-2 border-black mr-2 px-3"
                 />
                 <button className="btn btn-info btn-sm" onClick={handleSearch}>Search</button>
+                <div>
+                    {
+                      college && college.map(singleCollege=><SingleCollege key={singleCollege.id} singleCollege={singleCollege}></SingleCollege>)
+                    }
+                </div>
                 
             </div>
             <CollegeCard></CollegeCard>

@@ -1,10 +1,21 @@
+import { useEffect, useState } from "react";
+import SingleCollege from "../Home/SingleCollege";
 
 
 const CollegeCard = () => {
+    const [college, setCollege] = useState("");
+    useEffect(() => {
+        fetch('http://localhost:5000/three-colleges')
+            .then(res => res.json())
+            .then(data => setCollege(data))
+    }, [])
     return (
         <div>
-            <h2>Best Three College</h2>
-            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {
+                    college && college.map(singleCollege => <SingleCollege key={singleCollege.id} singleCollege={singleCollege}></SingleCollege>)
+                }
+            </div>
         </div>
     );
 };
