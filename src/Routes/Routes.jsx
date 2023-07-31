@@ -9,6 +9,10 @@ import AdmissionCollege from "../pages/AdmissionCollege/AdmissionCollege";
 import MyCollege from "../pages/MyCollege/MyCollege";
 import Profile from "../pages/Profile/Profile";
 import AddCollege from "../pages/AddCollege/AddCollege";
+import PrivateRoute from "./PrivateRoute";
+import CollgeDetails from "../pages/Home/Home/CollgeDetails";
+import AdmissionForm from "../pages/AdmissionCollege/AdmissionForm";
+import AddReview from "../pages/AddReview/AddReview";
 
 export const router = createBrowserRouter([
     {
@@ -30,12 +34,32 @@ export const router = createBrowserRouter([
                 element:<AdmissionCollege></AdmissionCollege>
             },
             {
+                path:'admission-process/:id',
+                element:<AdmissionForm></AdmissionForm>,
+                loader:({params})=>fetch(`http://localhost:5000/college/${params.id}`)
+                
+            },
+        
+            {
                 path:'my-college',
-                element:<MyCollege></MyCollege>
+                element:<PrivateRoute><MyCollege></MyCollege></PrivateRoute>,
+                
             },
             {
                 path:'add-college',
-                element:<AddCollege></AddCollege>
+                element:<PrivateRoute><AddCollege></AddCollege></PrivateRoute>
+            },
+            {
+                path:'college/:id',
+                element:<PrivateRoute><CollgeDetails></CollgeDetails></PrivateRoute>,
+                loader:({params})=>fetch(`http://localhost:5000/college/${params.id}`)
+                
+            },
+            {
+                path:'add-review/:id',
+                element:<PrivateRoute><AddReview></AddReview></PrivateRoute>,
+                loader:({params})=>fetch(`http://localhost:5000/college/${params.id}`)
+                
             },
             
             {

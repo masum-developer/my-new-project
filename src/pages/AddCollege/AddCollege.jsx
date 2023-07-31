@@ -23,7 +23,9 @@ const AddCollege = () => {
             .then(imgResponse => {
                 if (imgResponse.success) {
                     const photoURL = imgResponse.data.display_url;
-                    const saveClass = { name: data.name, image: photoURL,admissionDate:data.admissionDate, events:data.events, eventDetails:data.eventDetails, eventHistory:data.eventHistory, researchHistory:data.researchHistory, researchWork:data.researchWork, sportsName:data.sportsName, sportsDetails:data.sportsDetails, adminEmail:user.email}
+                    const saveClass = { name: data.name, image: photoURL,admissionDate:data.admissionDate, events:data.events, eventDetails:data.eventDetails, eventHistory:data.eventHistory, researchHistory:data.researchHistory, researchWork:data.researchWork, researchNumber:data.researchNumber,
+                    rating:0,
+                    sportsName:data.sportsName, sportsDetails:data.sportsDetails, adminEmail:user.email}
                     fetch('http://localhost:5000/colleges', {
                         method: 'POST',
                         headers: {
@@ -126,6 +128,19 @@ const AddCollege = () => {
                             className="input input-bordered w-full " />
                             
                     </div>
+                    
+                </div>
+                <div className="flex">
+                <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">No of Research</span>
+                        </label>
+                        <input type="number" placeholder="Research No"
+                            {...register("researchNumber",{required: true})}
+                            className="input input-bordered w-full " />
+                            
+                    </div>
+                    
                     
                 </div>
                 <div className="flex">

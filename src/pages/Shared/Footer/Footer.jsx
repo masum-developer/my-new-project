@@ -7,7 +7,7 @@ const Footer = () => {
         <div>
           <div>
             <p className="font-bold">
-              Admission College <br />Website since 1975
+              A to Z College <br />Admission since 1975
             </p>
             <p>Copyright © 2023 - All right reserved</p>
           </div>

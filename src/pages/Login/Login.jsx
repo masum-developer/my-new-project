@@ -1,13 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import app from "../../firebase/firebase.config";
 
 
-
+const auth = getAuth(app);
 const Login = () => {
     
     const [error,setError] = useState('');
+    const emailRef = useRef();
     const {loginUser,googleLogin,githubLogin}=useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
@@ -50,6 +53,20 @@ const Login = () => {
         })
         .catch(error=>console.log(error))
     }
+    const handleResetPassword = event =>{
+        const email = emailRef.current.value;
+        if(!email){
+            alert('Please Provide your email addres');
+            return;
+        }
+        sendPasswordResetEmail(auth,email)
+        .then(()=>{
+            alert('Check your email')
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content">
@@ -63,7 +80,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" name="email" placeholder="email" className="input input-bordered" />
+                            <input type="email" name="email" ref={emailRef} placeholder="email" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -78,7 +95,7 @@ const Login = () => {
                         </div>
                         </form>
                         <p>New to My Avenger <Link className="text-info font-bold" to='/register'>Register</Link> </p>
-                        <p>Forgot Password <Link className="text-info font-bold" to='/forgot-password'>Click Here</Link> </p>
+                        <p>Forgot Password <button className="text-info font-bold btn btn-link" onClick={handleResetPassword}>Reset Password</button></p>
                         <p className='text-error'>{error}</p>
                         <button onClick={handleGoogleLogin} className='btn btn-info mt-3'> <FaGoogle></FaGoogle> - Login with Google</button>
                         <button onClick={handleGithubLogin} className='btn btn-info mt-3' ><FaGithub></FaGithub> Login with Github</button>

@@ -23,6 +23,10 @@ const NavBar = () => {
             
             <li><Link to='/my-college'>My College</Link></li>
 }
+{user &&
+            
+            <li><Link to='/add-college'>Add College</Link></li>
+}
         </>
     return (
         <div className="navbar bg-base-100 h-28 mb-4">
@@ -35,7 +39,7 @@ const NavBar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <Link to='/'>College Admission Forum</Link>
+                <Link to='/'>A to Z College Admission</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

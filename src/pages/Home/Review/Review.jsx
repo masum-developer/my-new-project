@@ -1,9 +1,18 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import SingleReview from "./SingleReview";
 const Review = () => {
+    const [college, setCollege] = useState("");
+    useEffect(() => {
+        fetch('http://localhost:5000/colleges')
+            .then(res => res.json())
+            .then(data => setCollege(data))
+    }, [])
     const { register, handleSubmit} = useForm();
     const onSubmit = data => {
         console.log(data);
     }
+    console.log(college);
     return (
         
         <section>
@@ -11,9 +20,9 @@ const Review = () => {
             Review
             </h2>
             <div>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi totam consequatur cumque delectus nulla distinctio facere ad possimus, hic fugiat?
-                </p>
+                {
+                college && college.map(singleCollege=><SingleReview key={singleCollege._id} singleCollege={singleCollege}></SingleReview>)
+                }
             </div>
             <div>
             <form onSubmit={handleSubmit(onSubmit)}>
