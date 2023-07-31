@@ -13,6 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import CollgeDetails from "../pages/Home/Home/CollgeDetails";
 import AdmissionForm from "../pages/AdmissionCollege/AdmissionForm";
 import AddReview from "../pages/AddReview/AddReview";
+import ProfileEdit from "../pages/Profile/ProfileEdit";
 
 export const router = createBrowserRouter([
     {
@@ -36,7 +37,7 @@ export const router = createBrowserRouter([
             {
                 path:'admission-process/:id',
                 element:<AdmissionForm></AdmissionForm>,
-                loader:({params})=>fetch(`http://localhost:5000/college/${params.id}`)
+                loader:({params})=>fetch(`https://my-project-server-masum-developer.vercel.app/college/${params.id}`)
                 
             },
         
@@ -52,13 +53,13 @@ export const router = createBrowserRouter([
             {
                 path:'college/:id',
                 element:<PrivateRoute><CollgeDetails></CollgeDetails></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/college/${params.id}`)
+                loader:({params})=>fetch(`https://my-project-server-masum-developer.vercel.app/college/${params.id}`)
                 
             },
             {
                 path:'add-review/:id',
                 element:<PrivateRoute><AddReview></AddReview></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/college/${params.id}`)
+                loader:({params})=>fetch(`https://my-project-server-masum-developer.vercel.app/college/${params.id}`)
                 
             },
             
@@ -72,8 +73,15 @@ export const router = createBrowserRouter([
             },
             {
                 path:'profile',
-                element:<Profile></Profile>
-            }
+                element:<Profile></Profile>,
+                
+            },
+            {
+                path:'profile-edit/:id',
+                element:<PrivateRoute><ProfileEdit></ProfileEdit></PrivateRoute>,
+                loader:({params})=>fetch(`https://my-project-server-masum-developer.vercel.app/profile/${params.id}`)
+                
+            },
             
             
             

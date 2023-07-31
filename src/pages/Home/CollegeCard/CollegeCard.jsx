@@ -5,7 +5,7 @@ import SingleCollege from "../Home/SingleCollege";
 const CollegeCard = () => {
     const [college, setCollege] = useState("");
     useEffect(() => {
-        fetch('http://localhost:5000/three-colleges')
+        fetch('https://my-project-server-masum-developer.vercel.app/three-colleges')
             .then(res => res.json())
             .then(data => setCollege(data))
     }, [])
@@ -13,7 +13,7 @@ const CollegeCard = () => {
         <div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {
-                    college && college.map(singleCollege => <SingleCollege key={singleCollege.id} singleCollege={singleCollege}></SingleCollege>)
+                    college && college.map(singleCollege => <SingleCollege key={singleCollege._id} singleCollege={singleCollege}></SingleCollege>)
                 }
             </div>
         </div>

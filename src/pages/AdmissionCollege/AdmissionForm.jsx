@@ -5,7 +5,7 @@ const img_hosting_token = import.meta.env.VITE_Image_Upload_token
 const AdmissionForm = () => {
     const college = useLoaderData();
     const {_id,name}  = college;
-    
+
     const { register, handleSubmit, reset} = useForm();
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
     const onSubmit = data => {
@@ -25,7 +25,7 @@ const AdmissionForm = () => {
                     const saveClass = {collegeId:_id, collegeName:name, image: photoURL,candidateName:data.candidateName, birthDate:data.birthDate, phoneNumber:data.phoneNumber, addressDetails:data.addressDetails, subjects:data.subjects,
                     candidateEmail:data.candidateEmail
                 }
-                    fetch('http://localhost:5000/admissions', {
+                    fetch('https://my-project-server-masum-developer.vercel.app/admissions', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

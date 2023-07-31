@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaGoogle, FaGithub} from "react-icons/fa";
@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 
 const Register = () => {
     
-    const [error,setError] = useState('');
+    
     const {createUser,userProfile,logOut,googleLogin,githubLogin} = useContext(AuthContext);
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/'
@@ -17,31 +17,47 @@ const Register = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        const photo = form.photo.value;
-        console.log(name,email,password,photo);
+        const photo = '';
+        console.log(name,email,password);
 
         createUser(email,password)
         .then(result=>{
-            console.log(result.user)
-            setError('')
               userProfile(name,photo)
-              .then(r=>console.log(r))
-              .catch(error=>console.log(error))
-              logOut();
-              
-                Swal.fire({
-                    title: 'Success',
-                    text: 'Register done',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                  })
-            
-              navigate('/login');
+              .then(()=>{
+                const saveUser = {name:name,email:email,image:photo,role:'student', university:'',address:''}
+                fetch('https://my-project-server-masum-developer.vercel.app/users', {
+                    method: 'POST',
+                    headers:{
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                   })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Student created successfully',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                            logOut()
+                                .then(() => {
+                                    navigate('/login');
+                                })
+                                .catch(error => console.log(error))
+                        }
+                    })
+               
+            })
+            .catch(error=>console.log(error))
               
         
         })
         .catch(error=>{
-            setError(error.message)
+            console.log(error.message)
         })
     }
     const handleGoogleLogin = ()=>{
@@ -90,20 +106,14 @@ const Register = () => {
                             <input type="password" name="password" placeholder="password" className="input input-bordered" />
                             
                         </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Photo</span>
-                            </label>
-                            <input type="text" name="photo" placeholder="Give photo url" className="input input-bordered" />
-                            
-                        </div>
+                        
                         <div className="form-control mt-6">
                             
                             <input type="submit" className="btn bg-black border-0 text-white" value="Register" />
                         </div>
                         </form>
                         <p>Already have an account <Link className="text-info font-bold" to='/login'>Login</Link> </p>
-                        <p className='text-error'>{error}</p>
+                        
             <button onClick={handleGoogleLogin} className='btn btn-info mt-3'> <FaGoogle></FaGoogle> - Login with Google</button>
             <button onClick={handleGithubLogin} className='btn btn-info mt-3' ><FaGithub></FaGithub> Login with Github</button>
                         

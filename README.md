@@ -1,8 +1,26 @@
-# React + Vite
+#A to Z Job
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Link
+Hosted in Firebase ->
+client link->https://my-new-project-cf132.web.app/
 
-Currently, two official plugins are available:
+Hosted in Vercel->
+server link->https://my-project-server-masum-developer.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Features
+***
+A list of feature used within the project:
+
+* In this project I use Firebase login method.
+
+* In this project I use children props on Auth Provider.
+
+* In this project I use useState, useEffect hook.
+
+* In this project I use private route to protect route.
+
+
+## Resources & Credits
+
+Image -> [Imgbb](https://imgbb.com/)

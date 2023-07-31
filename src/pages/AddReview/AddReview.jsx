@@ -11,7 +11,7 @@ const AddReview = () => {
         const rating = form.rating.value;
         
         const updatedCollege = {rating}
-        fetch(`http://localhost:5000/colleges/${college._id}`,{
+        fetch(`https://my-project-server-masum-developer.vercel.app/colleges/${college._id}`,{
             method:'PATCH',
             headers:{
                 'content-type':'application/json'

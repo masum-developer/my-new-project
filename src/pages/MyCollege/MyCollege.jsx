@@ -6,7 +6,7 @@ const MyCollege = () => {
     const {user} = useContext(AuthContext);
     const [college, setCollege] = useState("");
     useEffect(() => {
-        fetch(`http://localhost:5000/my-college/${user?.email}`)
+        fetch(`https://my-project-server-masum-developer.vercel.app/my-college/${user?.email}`)
             .then(res => res.json())
             .then(data => setCollege(data))
     }, [user])

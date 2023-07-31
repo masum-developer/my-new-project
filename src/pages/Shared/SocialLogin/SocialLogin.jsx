@@ -10,7 +10,7 @@ const SocialLogin = () => {
     //         const loggedInUser = result.user;
     //         console.log('mmm',loggedInUser);
     //         const saveUser = {name:loggedInUser.displayName,email:loggedInUser.email, image:loggedInUser.photoURL, role:'student'}
-    //         fetch('http://localhost:5000/users', {
+    //         fetch('https://my-project-server-masum-developer.vercel.app/users', {
     //             method: 'POST',
     //             headers:{
     //                 'content-type': 'application/json'

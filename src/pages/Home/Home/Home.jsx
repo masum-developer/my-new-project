@@ -17,7 +17,7 @@ const Home = () => {
     // }, [])
 
     const handleSearch = () => {
-        fetch(`http://localhost:5000/college-name/${searchText}`)
+        fetch(`https://my-project-server-masum-developer.vercel.app/college-name/${searchText}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);

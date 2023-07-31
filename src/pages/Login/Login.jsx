@@ -94,7 +94,7 @@ const Login = () => {
                             <input type="submit" className="btn bg-black border-0 text-white" value="Login" />
                         </div>
                         </form>
-                        <p>New to My Avenger <Link className="text-info font-bold" to='/register'>Register</Link> </p>
+                        <p>New to AtoZ College Admission <Link className="text-info font-bold" to='/register'>Register</Link> </p>
                         <p>Forgot Password <button className="text-info font-bold btn btn-link" onClick={handleResetPassword}>Reset Password</button></p>
                         <p className='text-error'>{error}</p>
                         <button onClick={handleGoogleLogin} className='btn btn-info mt-3'> <FaGoogle></FaGoogle> - Login with Google</button>

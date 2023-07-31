@@ -26,7 +26,7 @@ const AddCollege = () => {
                     const saveClass = { name: data.name, image: photoURL,admissionDate:data.admissionDate, events:data.events, eventDetails:data.eventDetails, eventHistory:data.eventHistory, researchHistory:data.researchHistory, researchWork:data.researchWork, researchNumber:data.researchNumber,
                     rating:0,
                     sportsName:data.sportsName, sportsDetails:data.sportsDetails, adminEmail:user.email}
-                    fetch('http://localhost:5000/colleges', {
+                    fetch('https://my-project-server-masum-developer.vercel.app/colleges', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

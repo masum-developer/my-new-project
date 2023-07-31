@@ -53,7 +53,7 @@ const NavBar = () => {
 
 user?
 <>
-<Link to='/profile'><span>{user.displayName}</span></Link>
+<Link to='/profile'>{user.displayName}</Link>
 <button className="btn btn-black ml-3" onClick={handleLogOut}>LogOut</button>
 </>
 :
